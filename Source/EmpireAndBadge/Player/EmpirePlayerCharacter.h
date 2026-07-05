@@ -6,12 +6,20 @@
 UCLASS()
 class EMPIREANDBADGE_API AEmpirePlayerCharacter : public ACharacter
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 public:
-	UFUNCTION(BlueprintCallable)
-	void SwitchToCopMode();
+    AEmpirePlayerCharacter();
 
-	UFUNCTION(BlueprintCallable)
-	void SwitchToCriminalMode();
+    UFUNCTION(BlueprintCallable)
+    void SwitchToCopMode();
+
+    UFUNCTION(BlueprintCallable)
+    void SwitchToCriminalMode();
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+    class UPoliceHeatComponent* HeatComponent;
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+    class UBusinessComponent* BusinessComponent;
 };
