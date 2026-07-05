@@ -1,0 +1,12 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "5.4",
+	"Category": "Games",
+	"Description": "Empire & Badge - GTA-like open world crime empire game with businesses, robberies, clubs and cop career",
+	"Modules": [
+		{
+			"Name": "EmpireAndBadge",
+			"Type": "Runtime"
+		}
+	]
+}
