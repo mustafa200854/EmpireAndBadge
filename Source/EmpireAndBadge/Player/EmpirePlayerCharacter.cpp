@@ -2,6 +2,7 @@
 #include "PoliceHeatComponent.h"
 #include "BusinessComponent.h"
 #include "Heist/HeistMission.h"
+#include "ErrorLogger.h"
 
 AEmpirePlayerCharacter::AEmpirePlayerCharacter()
 {
@@ -11,13 +12,13 @@ AEmpirePlayerCharacter::AEmpirePlayerCharacter()
 
 void AEmpirePlayerCharacter::SwitchToCopMode()
 {
-    UE_LOG(LogTemp, Warning, TEXT("Switched to Cop Mode - Corruption & Law Enforcement enabled"));
+    UErrorLogger::LogWarning(TEXT("Switched to Cop Mode - Corruption & Law Enforcement enabled"));
     if (HeatComponent) HeatComponent->ReduceHeat(100.0f);
 }
 
 void AEmpirePlayerCharacter::SwitchToCriminalMode()
 {
-    UE_LOG(LogTemp, Warning, TEXT("Switched to Criminal Mode - Empire Building & Heat Generation enabled"));
+    UErrorLogger::LogWarning(TEXT("Switched to Criminal Mode - Empire Building & Heat Generation enabled"));
 }
 
 // New Heist Function
@@ -30,5 +31,9 @@ void AEmpirePlayerCharacter::StartHeistMission()
         NewHeist->RequiredObjectives = { EHeistObjective::StealMoney, EHeistObjective::DestroyEvidence };
         NewHeist->StartHeist("Diamond Casino Heist");
         if (HeatComponent) HeatComponent->AddHeat(40.0f); // Heat from heist
+    }
+    else
+    {
+        UErrorLogger::LogError(TEXT("Failed to create new Heist Mission object!"));
     }
 }
